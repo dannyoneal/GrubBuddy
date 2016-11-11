@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ../lunchbuddy/bin/www"
+    "prestart": "gulp build",
+    "start": "node ../lunchbuddy/bin/www",
+    "quick": "node ../lunchbuddy/bin/www"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
