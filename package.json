@@ -1,0 +1,19 @@
+{
+  "name": "lunchbuddy",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ../lunchbuddy/bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.14.0",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.0",
+    "gulp": "^3.9.0",
+    "gulp-typescript": "^2.8.0",
+    "del": "^2.1.0"
+  }
+}
