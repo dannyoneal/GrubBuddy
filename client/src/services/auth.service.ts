@@ -12,8 +12,8 @@ declare var Auth0Lock: any;
 export class AuthService {
 
   jwtHelper: JwtHelper = new JwtHelper();
-  auth0 = new Auth0({clientID: 'YRgScR7QVnMcvbxjcVmf1qOcuTmHJedE', domain: 'grubbuddy.auth0.com' });
-  lock = new Auth0Lock('YRgScR7QVnMcvbxjcVmf1qOcuTmHJedE', 'grubbuddy.auth0.com', {
+  auth0 = new Auth0({clientID: 'p4GMkSaYsoFJhNPrKvCb4kKE97S4mCip', domain: 'grubbuddyoauth.auth0.com' });
+  lock = new Auth0Lock('p4GMkSaYsoFJhNPrKvCb4kKE97S4mCip', 'grubbuddyoauth.auth0.com', {
     auth: {
       redirect: false,
       params: {
