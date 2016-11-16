@@ -14,3 +14,34 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+.centered {
+    right: 50%;
+    bottom: 50%;
+    transform: translate(50%,50%);
+    position: absolute;
+}
+
+.bottom {
+  padding: $content-padding;
+  position: fixed;
+  bottom:0;
+  left: 0;
+  right: 0;
+}
+
+.main-heading {
+  font-family: "Open Sans";
+  font-size: 48px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 350;
+  line-height: 26.4px;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.large-icon {
+  font-size: 60px;
+}
