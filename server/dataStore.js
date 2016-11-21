@@ -1,30 +1,32 @@
-var firebase = require("firebase");
-var cert = require('./firebaseAdminKey.json');
-var db = null;
+var mongoose = require('mongoose'); 
+var model = null;
+
+
+var eventSchema = mongoose.Schema(
+    {
+        id: Number,
+        title: String,
+        description: String,
+        date: Date
+    }
+);
+
 module.exports = {
     initDataStore: function() {
         try {
-             var config = {
-                apiKey: "AIzaSyDBcnWHAoAuC0cZ9kp3MnDPiH-48UcoWEM",
-                authDomain: "lunchmate-f005d.firebaseapp.com",
-                databaseURL: "https://lunchmate-f005d.firebaseio.com",
-                storageBucket: "lunchmate-f005d.appspot.com",
-                messagingSenderId: "51408714003"
-            };
-            firebase.initializeApp(config);
-            db = firebase.database();
 
-            if(!db) {
-                console.log("Datastore object is null!")
-                throw "error";
-            }
+            // Configuration
+            mongoose.connect('mongodb://localhost/lunchbuddy');
 
             console.log("Datastore succesfully initialized");
+
         }
         catch(err) {
-            console.log("An error occured connecting to firebase!");
+            console.log("An error occured connecting to mongodb!");
             console.log(err);
         }
+    },
+    getEventModel: function () {
+        return mongoose.model('Event', eventSchema);
     }
 }
-
