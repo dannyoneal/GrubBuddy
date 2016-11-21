@@ -1,12 +1,10 @@
 <ion-content padding *ngIf="!auth.authenticated()">
     <div class="text-align-center">
-      <profile-page></profile-page>
     </div>
   </ion-content>
 
 <ion-tabs *ngIf="auth.authenticated()">
-  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>
-  <ion-tab (ionSelect)="auth.logout()" tabTitle="Logout" tabIcon="exit"></ion-tab>
+  <ion-tab [root]="tab1Root" tabTitle="All Grubs"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Public Grubs"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="My Grubs"></ion-tab>
 </ion-tabs>

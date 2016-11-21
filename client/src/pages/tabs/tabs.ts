@@ -1,18 +1,23 @@
-import { Component } from '@angular/core';
-import { HomePage } from '../home/home';
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import { Component, OnInit } from '@angular/core';
+import { MyGrubsPage } from '../myGrubs/myGrubs';
+import { AllGrubsPage } from '../allGrubs/allGrubs';
+import { PublicGrubsPage } from '../publicGrubs/publicGrubs';
 import { AuthService } from '../../services/auth.service';
+import { NavController} from 'ionic-angular';
 
 @Component({
-  templateUrl: 'tabs.html'
+  templateUrl: 'tabs.html',
+  selector: 'tabs'
 })
-export class TabsPage {
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
-  tab1Root: any = HomePage;
-  tab2Root: any = AboutPage;
-  tab3Root: any = ContactPage;
-  constructor(public auth: AuthService) {
-  } 
+export class TabsPage implements OnInit {
+  tab1Root: any = AllGrubsPage;
+  tab2Root: any = PublicGrubsPage;
+  tab3Root: any = MyGrubsPage;
+  constructor(public auth: AuthService) {} 
+
+  ngOnInit() {
+    if(!this.auth.authenticated()) {
+      this.auth.login();
+    }
+  }
 }

@@ -2,7 +2,6 @@ import { Storage } from '@ionic/storage';
 import { AuthHttp, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { ProfilePage } from '../pages/profile/profile';
 
 // Avoid name not found warnings
 declare var Auth0: any;
@@ -11,6 +10,7 @@ declare var Auth0Lock: any;
 @Injectable()
 export class AuthService {
 
+  
   jwtHelper: JwtHelper = new JwtHelper();
   auth0 = new Auth0({clientID: 'p4GMkSaYsoFJhNPrKvCb4kKE97S4mCip', domain: 'grubbuddyoauth.auth0.com' });
   lock = new Auth0Lock('p4GMkSaYsoFJhNPrKvCb4kKE97S4mCip', 'grubbuddyoauth.auth0.com', {
@@ -18,8 +18,14 @@ export class AuthService {
       redirect: false,
       params: {
         scope: 'openid offline_access',
-      }
-    }
+      },
+    },
+    theme: {
+      logo: '../../assets/icon/icon.png',
+      primaryColor: '#31324F'
+    } ,
+    socialButtonStyle: 'small',
+    closable: false
   });
   storage: Storage = new Storage();
   refreshSubscription: any;

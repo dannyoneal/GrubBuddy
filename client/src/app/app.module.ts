@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule, NavController } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
-import { HomePage } from '../pages/home/home';
-import { ContactPage } from '../pages/contact/contact';
-import { AboutPage } from '../pages/about/about';
-import { ProfilePage } from '../pages/profile/profile';
+import { MyGrubsPage } from '../pages/myGrubs/myGrubs';
+import { PublicGrubsPage } from '../pages/publicGrubs/publicGrubs';
+import { AllGrubsPage } from '../pages/allGrubs/allGrubs';
 import { AuthConfig, AuthHttp } from 'angular2-jwt';
 import { AuthService } from '../services/auth.service';
 import { Http } from '@angular/http';
@@ -23,11 +22,10 @@ export function getAuthHttp(http) {
 @NgModule({
   declarations: [
     MyApp,
-    ProfilePage,
     TabsPage,
-    HomePage,
-    ContactPage,
-    AboutPage
+    MyGrubsPage,
+    PublicGrubsPage,
+    AllGrubsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -35,13 +33,13 @@ export function getAuthHttp(http) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ProfilePage,
     TabsPage,
-    HomePage,
-    ContactPage,
-    AboutPage
+    MyGrubsPage,
+    PublicGrubsPage,
+    AllGrubsPage
   ],
   providers: [
+    Storage,
     AuthService,
     {
       provide: AuthHttp,
