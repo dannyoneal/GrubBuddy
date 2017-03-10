@@ -1,3 +1,4 @@
+using GrubBuddy.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -40,6 +41,10 @@ namespace GrubBuddy
             });
 
             services.AddMvc();
+
+            services.AddTransient<IGrubsDac>(provider => 
+                new GrubsDac(Configuration.GetSection("MongoConnection:ConnectionString").Value,
+                Configuration.GetSection("MongoConnection:Database").Value));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
