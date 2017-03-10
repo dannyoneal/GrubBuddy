@@ -9,6 +9,7 @@ import { AuthConfig, AuthHttp } from 'angular2-jwt';
 import { AuthService } from '../services/auth.service';
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
+import { GrubsService } from "../services/grubs.service"
 
 let storage: Storage = new Storage();
 
@@ -41,6 +42,7 @@ export function getAuthHttp(http) {
   providers: [
     Storage,
     AuthService,
+    GrubsService,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,

@@ -7,5 +7,8 @@
 </ion-header>
 
 <ion-content padding>
-
+<ion-searchbar [(ngModel)]="searchText" [formControl]="searchBarControl"></ion-searchbar>
+<ion-list *ngFor="let grub of allGrubs" no-lines>
+    <ion-card>Creator: {{ grub.creatorName }} - Location {{grub.location}}</ion-card>
+  </ion-list>
 </ion-content>
