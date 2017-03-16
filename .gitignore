@@ -3,3 +3,4 @@ server/GrubBuddy.Api/GrubBuddy/obj/Debug/netcoreapp1.1/GrubBuddy.csprojResolveAs
 bin/
 obj/
 .vs/
+GrubBuddy/npm-debug.log
