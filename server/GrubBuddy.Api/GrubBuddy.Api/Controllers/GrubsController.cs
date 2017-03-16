@@ -1,26 +1,35 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using GrubBuddy.Models;
 using GrubBuddy.DataAccess;
+using System.Net.Http;
 
-namespace GrubBuddy.Controllers
+namespace GrubBuddy.Api.Controllers
 {
     public class GrubsController : Controller
     {
         IGrubsDac _grubsDac;
         public GrubsController(IGrubsDac grubsDac)
         {
-            _grubsDac = grubsDac;  
+            _grubsDac = grubsDac;
         }
 
         [HttpGet]
-        public IEnumerable<Grubs> Get() {
+        public IEnumerable<Grub> Get()
+        {
             return _grubsDac.Get();
         }
         [HttpGet]
-        public IEnumerable<Grubs> GetByName(string name) {
+        public IEnumerable<Grub> GetByName(string name)
+        {
             return _grubsDac.GetByName(name);
+        }
+
+        [HttpPost]
+        public HttpResponseMessage Create([FromBody]Grub grub)
+        {
+            return new HttpResponseMessage();
         }
     }
 }
