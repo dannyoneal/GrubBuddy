@@ -1,9 +1,12 @@
-﻿using GrubBuddy.DataAccess;
+﻿using GrubBuddy.Api.Attributes;
+using GrubBuddy.DataAccess;
+using GrubBuddy.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using FluentValidation.AspNetCore;
 
 namespace GrubBuddy.Api
 {
@@ -33,7 +36,9 @@ namespace GrubBuddy.Api
                     .AllowCredentials());
             });
 
-            services.AddMvc();
+            services.AddMvc(options =>
+                options.Filters.Add(new ValidationAttribute()))
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<GrubValidator>());
 
             services.AddTransient<IGrubsDac>(provider =>
                 new GrubsDac(Configuration.GetSection("MongoConnection:ConnectionString").Value,

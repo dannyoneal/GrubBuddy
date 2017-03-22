@@ -1,5 +1,8 @@
-public enum Transportation {
-    Walk = 0,
-    PersonalVehicle = 1,
-    PublicTransport = 2
+namespace GrubBuddy.Enums
+{
+    public enum Transportation {
+        Walk = 1,
+        PersonalVehicle = 2,
+        PublicTransport = 3
+    }
 }

@@ -1,6 +1,6 @@
-﻿{
+{
   "iisSettings": {
-    "windowsAuthentication": false,
+    "windowsAuthentication": true,
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:50095/",
@@ -15,15 +15,15 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Local"
       }
+    },
+    "GrubBuddy.Api": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "api/values",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "GrubBuddy.Api": {
-        "commandName": "Project",
-        "launchBrowser": true,
-        "launchUrl": "api/values",
-        "environmentVariables": {
-          "ASPNETCORE_ENVIRONMENT": "Development"
-        },
-        "applicationUrl": "http://localhost:50096"
-      }
+      "applicationUrl": "http://localhost:50096"
     }
+  }
 }

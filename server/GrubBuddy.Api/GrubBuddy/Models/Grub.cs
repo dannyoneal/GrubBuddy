@@ -2,12 +2,16 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System;
+using GrubBuddy.Enums;
 
 namespace GrubBuddy.Models
 {
     public class Grub {
         [BsonElement("id")]
-        public ObjectId Id {get; set;}    
+        public ObjectId? Id {get; set;}  
+        
+        public long UserId { get; set; }
 
         [BsonElement("creatorName")]
         public string CreatorName {get; set;}
@@ -15,13 +19,10 @@ namespace GrubBuddy.Models
         [BsonElement("location")]
         public string Location {get; set;}
 
-        [BsonElement("createdDateUtc")]
-        public string createdDateUtc {get; set;}
-
         [BsonElement("grubTimeUtc")]
-        public string GrubTimeUtc {get; set;}
+        public DateTime GrubTimeUtc {get; set;}
 
-        [BsonElementAttribute("transportationMethodId")]
+        [BsonElement("transportationMethodId")]
         public int TransportationMethodId {get; set;}
 
         [JsonConverter(typeof(StringEnumConverter))]
@@ -30,7 +31,7 @@ namespace GrubBuddy.Models
                     return (Transportation) TransportationMethodId;
                 }
             
-            set {
+            set { 
                     TransportationMethodId = (int) value;
                 }
         }
