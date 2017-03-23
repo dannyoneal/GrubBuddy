@@ -5,15 +5,18 @@ using GrubBuddy.Models;
 using GrubBuddy.DataAccess;
 using System.Threading.Tasks;
 using GrubBuddy.Responses;
+using Microsoft.Extensions.Logging;
 
 namespace GrubBuddy.Api.Controllers
 {
     public class GrubsController : Controller
     {
-        readonly IGrubsRepository _grubsRepository;
-        public GrubsController(IGrubsRepository grubsRepository)
+        private readonly IGrubsRepository _grubsRepository;
+        private readonly ILogger _logger;
+        public GrubsController(IGrubsRepository grubsRepository, ILoggerFactory loggerFactory)
         {
             _grubsRepository = grubsRepository;
+            _logger = loggerFactory.CreateLogger<GrubsController>();
         }
 
         [HttpGet]
@@ -34,11 +37,13 @@ namespace GrubBuddy.Api.Controllers
             var response = new ApiResponse();
             try
             {
+                throw new Exception("Ahhh");
                 var insertedGrub = await _grubsRepository.Insert(grub);
                 response.Result = insertedGrub;
             }
             catch (Exception ex) //todo log this
             {
+                _logger.LogError(new EventId(), ex, ex.StackTrace);
                 response.Errors = new []
                 {
                     "An internal server error has occured while saving the grub"

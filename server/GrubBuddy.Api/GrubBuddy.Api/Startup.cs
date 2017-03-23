@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using FluentValidation.AspNetCore;
+using GrubBuddy.Api.Middleware;
 
 namespace GrubBuddy.Api
 {
@@ -50,7 +51,9 @@ namespace GrubBuddy.Api
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            
+            loggerFactory.AddFile("Logs/GrubBuddyApi-{Date}.txt");
+
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
             app.UseCors("CorsPolicy");
             app.UseMvc(routes =>
             {
