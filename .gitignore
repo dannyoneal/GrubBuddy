@@ -4,3 +4,4 @@ bin/
 obj/
 .vs/
 GrubBuddy/npm-debug.log
+Logs/
