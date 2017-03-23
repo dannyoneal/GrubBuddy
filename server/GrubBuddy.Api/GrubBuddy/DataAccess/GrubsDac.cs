@@ -1,33 +1,42 @@
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using GrubBuddy.Models;
 
 namespace GrubBuddy.DataAccess
 {
-    public interface IGrubsDac {
+    public interface IGrubsRepository {
         IEnumerable<Grub> Get();
         IEnumerable<Grub> GetByName(string name);
+        Task<Grub> Insert(Grub grub);
     }
-    public class GrubsDac : IGrubsDac
+    public class GrubsRepository : IGrubsRepository
     {
-        IMongoClient _client;
-        IMongoDatabase _db;
-        public GrubsDac(string connectionString, string dbName)
+        private readonly IMongoDatabase _db;
+        public GrubsRepository(string connectionString, string dbName)
         {
-            _client = new MongoClient(connectionString);
-            _db = _client.GetDatabase(dbName);   
+            _db = new MongoClient(connectionString).GetDatabase(dbName);
         }
 
         public IEnumerable<Grub> Get() {
-            var g = _db.GetCollection<Grub>("Grubs").Find(x => true).ToList();
+            _db.GetCollection<Grub>("Grubs").Find(x => true).ToList();
             return _db.GetCollection<Grub>("Grubs").Find(x => true).ToList();
         }
         
         public IEnumerable<Grub> GetByName(string name) {
             var filter = Builders<Grub>.Filter.Regex("CreatorName",  BsonRegularExpression.Create(new Regex(name, RegexOptions.IgnoreCase)));
             return _db.GetCollection<Grub>("Grubs").FindAsync<Grub>(filter).Result.ToList();
+        }
+
+        public async Task<Grub> Insert(Grub grub)
+        {
+            grub.Id = Guid.NewGuid();
+            await _db.GetCollection<Grub>("Grubs").InsertOneAsync(grub);
+
+            return grub;
         }
     }
 }

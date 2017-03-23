@@ -40,8 +40,8 @@ namespace GrubBuddy.Api
                 options.Filters.Add(new ValidationAttribute()))
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<GrubValidator>());
 
-            services.AddTransient<IGrubsDac>(provider =>
-                new GrubsDac(Configuration.GetSection("MongoConnection:ConnectionString").Value,
+            services.AddTransient<IGrubsRepository>(provider =>
+                new GrubsRepository(Configuration.GetSection("MongoConnection:ConnectionString").Value,
                 Configuration.GetSection("MongoConnection:Database").Value));
         }
 

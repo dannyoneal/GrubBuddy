@@ -8,8 +8,8 @@ using GrubBuddy.Enums;
 namespace GrubBuddy.Models
 {
     public class Grub {
-        [BsonElement("id")]
-        public ObjectId? Id {get; set;}  
+        [BsonElement("grubId")]
+        public Guid? Id {get; set;}  
         
         public long UserId { get; set; }
 

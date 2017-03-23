@@ -11,7 +11,7 @@ namespace GrubBuddy.Validators
             RuleFor(x => x.UserId).NotEmpty().WithMessage("A valid UserId must be provided");
             RuleFor(x => x.CreatorName).NotEmpty().NotEmpty().WithMessage("A Creator name is required");
             RuleFor(x => x.Location).NotEmpty().NotEmpty().WithMessage("A Grub Location is required");
-            RuleFor(x => x.TransportationMethodId).SetValidator(new TransportationEnumValidator());
+            RuleFor(x => x.TransportationMethodId).SetValidator(new TransportationEnumValidator()).WithMessage("Invalid transportation method!");
             RuleFor(x => x.GrubTimeUtc).GreaterThanOrEqualTo(DateTime.Now.AddMinutes(-1)).WithMessage("Grub time must be in the future!");
         }
     }
