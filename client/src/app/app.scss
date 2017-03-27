@@ -16,11 +16,9 @@
 // automatically applied to the <body> element in the app.
 
 
-.centered {
-    right: 50%;
-    bottom: 50%;
-    transform: translate(50%,50%);
-    position: absolute;
+.top-centered-col {
+  text-align: center;
+  margin-top: 10%;
 }
 
 .bottom {
@@ -45,3 +43,10 @@
 .large-icon {
   font-size: 60px;
 }
+
+#map {
+  height:50%;
+  width:100%;
+  position:relative;
+}
+

@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
-import { IonicApp, IonicModule, NavController } from 'ionic-angular';
+import { IonicApp, IonicModule, NavController, ModalController } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
 import { MyGrubsPage } from '../pages/myGrubs/myGrubs';
 import { PublicGrubsPage } from '../pages/publicGrubs/publicGrubs';
 import { AllGrubsPage } from '../pages/allGrubs/allGrubs';
+import { MapPage } from '../pages/map/map';
 import { AuthConfig, AuthHttp } from 'angular2-jwt';
 import { AuthService } from '../services/auth.service';
+import { ModalService } from '../services/modal.service';
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
-import { GrubsService } from "../services/grubs.service"
+import { GrubsService } from "../services/grubs.service";
 
 let storage: Storage = new Storage();
 
@@ -26,7 +28,8 @@ export function getAuthHttp(http) {
     TabsPage,
     MyGrubsPage,
     PublicGrubsPage,
-    AllGrubsPage
+    AllGrubsPage,
+    MapPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -37,17 +40,19 @@ export function getAuthHttp(http) {
     TabsPage,
     MyGrubsPage,
     PublicGrubsPage,
-    AllGrubsPage
+    AllGrubsPage,
+    MapPage
   ],
   providers: [
     Storage,
     AuthService,
     GrubsService,
+    ModalService,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
       deps: [Http]
-    }
+    },
   ]
 })
 export class AppModule {}
