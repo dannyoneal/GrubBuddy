@@ -7,17 +7,8 @@
 </ion-header>
 
 <ion-content padding>
-<ion-grid>
-  <ion-row>
-    <ion-col class="top-centered-col">
-      <button ion-button color="secondary" (click)="openCreateGrub()">New Grub</button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-searchbar [(ngModel)]="searchText" [formControl]="searchBarControl"></ion-searchbar>
-    <ion-list *ngFor="let grub of allGrubs" no-lines>
-      <ion-card>Creator: {{ grub.creatorName }} - Location {{grub.location}}</ion-card>
-    </ion-list> 
-  </ion-row>
-  </ion-grid>
+<ion-searchbar [(ngModel)]="searchText" [formControl]="searchBarControl"></ion-searchbar>
+<ion-list *ngFor="let grub of allGrubs" no-lines>
+    <ion-card>Creator: {{ grub.creatorName }} - Location {{grub.location}}</ion-card>
+  </ion-list>
 </ion-content>
