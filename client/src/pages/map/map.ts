@@ -7,7 +7,7 @@ declare var google;
   templateUrl: 'map.html',
 })
 
-export class AutocompletePage{
+export class MapPage{
   @ViewChild('map') mapElement: ElementRef;
   autocompleteItems;
   autocomplete;

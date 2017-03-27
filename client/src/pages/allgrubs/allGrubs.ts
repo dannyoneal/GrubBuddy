@@ -5,7 +5,7 @@ import { GrubsService } from "../../services/grubs.service";
 import { ModalService } from "../../services/modal.service";
 import { Grub } from '../../types/Grub';
 import { FormControl } from '@angular/forms';
-import { AutocompletePage } from '../map/map'
+import { MapPage } from '../map/map'
 
 @Component({
   selector: 'page-all-grubs',
@@ -43,7 +43,7 @@ export class AllGrubsPage implements OnInit{
   }
 
   openCreateGrub() {
-    this.modalService.openModal(AutocompletePage)
+    this.modalService.openModal(MapPage)
   }
 
 }
