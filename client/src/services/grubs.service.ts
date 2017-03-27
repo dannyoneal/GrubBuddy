@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class GrubsService {
-    private baseGrubsUrl = "http://localhost:5000/grubs";
+    private baseGrubsUrl = "http://localhost:50095/grubs";
     grubs: any;
     constructor(private http: Http) {
         this.grubs = [];
@@ -18,7 +18,8 @@ export class GrubsService {
         var action = "/get";
         this.grubs = this.http.get(this.baseGrubsUrl + action)
         .map((res:Response) => res.json())
-        .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+        .retry(2)
+        .catch((error:any) => {return []});
 
         return this.grubs;
     }
@@ -27,6 +28,7 @@ export class GrubsService {
         var action = "/getByName/" + searchText;
         return this.http.get(this.baseGrubsUrl + action)
         .map((res:Response) => res.json())
+        .retry(2)
         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
 }
