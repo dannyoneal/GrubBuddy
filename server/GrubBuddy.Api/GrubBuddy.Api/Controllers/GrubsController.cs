@@ -37,11 +37,10 @@ namespace GrubBuddy.Api.Controllers
             var response = new ApiResponse();
             try
             {
-                throw new Exception("Ahhh");
                 var insertedGrub = await _grubsRepository.Insert(grub);
                 response.Result = insertedGrub;
             }
-            catch (Exception ex) //todo log this
+            catch (Exception ex)
             {
                 _logger.LogError(new EventId(), ex, ex.StackTrace);
                 response.Errors = new []
