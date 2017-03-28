@@ -1,4 +1,7 @@
-﻿using GrubBuddy.Api.Attributes;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using GrubBuddy.Api.Attributes;
 using GrubBuddy.DataAccess;
 using GrubBuddy.Validators;
 using Microsoft.AspNetCore.Builder;
@@ -41,9 +44,24 @@ namespace GrubBuddy.Api
                 options.Filters.Add(new ValidationAttribute()))
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<GrubValidator>());
 
+
             services.AddTransient<IGrubsRepository>(provider =>
                 new GrubsRepository(Configuration.GetSection("MongoConnection:ConnectionString").Value,
                 Configuration.GetSection("MongoConnection:Database").Value));
+
+            services.AddTransient<IAuth0Api>(provider => new Auth0Api(Configuration.GetSection("Auth0:ClientId").Value,
+                Configuration.GetSection("Auth0:ClientSecret").Value,
+                Configuration.GetSection("Auth0:Audience").Value,
+                Configuration.GetSection("Auth0:TokenUrl").Value));
+
+            services.AddSingleton<IAuth0Repository, Auth0Repository>();
+            var serviceProvider = services.BuildServiceProvider();
+
+            services.AddSingleton<IUserApi>(provider =>
+                new UserApi(serviceProvider.GetService<IAuth0Repository>(), 
+                Configuration.GetSection("Auth0:ClientUrl").Value));
+
+            services.AddTransient<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
