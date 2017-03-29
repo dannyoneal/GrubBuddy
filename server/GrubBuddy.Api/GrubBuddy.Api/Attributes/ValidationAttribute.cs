@@ -11,11 +11,11 @@ namespace GrubBuddy.Api.Attributes
         {
             if (actionContext.ModelState.IsValid) return;
 
-            //actionContext.Result = new BadRequestObjectResult(new ApiResponse
-            //{
-            //    Errors = actionContext.ModelState.Values.SelectMany(v => v.Errors).Select(x => x.ErrorMessage),
-            //    Result = actionContext.ActionArguments.Values
-            //});
+            actionContext.Result = new BadRequestObjectResult(new ApiResponse
+            {
+                Errors = actionContext.ModelState.Values.SelectMany(v => v.Errors).Select(x => x.ErrorMessage),
+                Result = actionContext.ActionArguments.Values
+            });
         }
     }
 }

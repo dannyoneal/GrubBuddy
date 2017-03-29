@@ -22,7 +22,6 @@ namespace GrubBuddy.Api
         private readonly IManagementApiClient _managementApi;
         public UserApi(IAuth0Repository authRepo, string url)
         {
-            authRepo.GetAccessToken().Wait();
             _managementApi = new ManagementApiClient(authRepo.GetAccessToken().Result, url);
         }
         public async Task<IList<User>> GetUsers()

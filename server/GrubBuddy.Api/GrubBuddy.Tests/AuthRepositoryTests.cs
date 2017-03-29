@@ -16,7 +16,7 @@ namespace GrubBuddy.Tests
         private class TestPackage
         {
             public readonly Mock<IAuth0Api> ApiMock;
-            public IAuth0Repository Repo;
+            public readonly IAuth0Repository Repo;
             public TestPackage()
             {
                 ApiMock = new Mock<IAuth0Api>();
