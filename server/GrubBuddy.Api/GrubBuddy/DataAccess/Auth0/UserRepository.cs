@@ -1,17 +1,11 @@
 ﻿using System.Collections.Concurrent;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Auth0.Core;
 using GrubBuddy.Api;
+using GrubBuddy.DataAccess.Interfaces;
 
-namespace GrubBuddy.DataAccess
+namespace GrubBuddy.DataAccess.Auth0
 {
-    public interface IUserRepository
-    {
-        void LoadUsers();
-        bool DoesUserExist(string userId);
-    }
-
     public class UserRepository : IUserRepository
     {
         private readonly ConcurrentBag<User> _users;

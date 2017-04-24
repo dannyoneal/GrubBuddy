@@ -1,13 +1,10 @@
-using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Moq;
 using Xunit;
 using GrubBuddy.Api;
-using GrubBuddy.DataAccess;
+using GrubBuddy.DataAccess.Auth0;
 using GrubBuddy.Models;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
-using Newtonsoft.Json;
+using GrubBuddy.DataAccess.Interfaces;
 
 namespace GrubBuddy.Tests
 {
@@ -16,7 +13,7 @@ namespace GrubBuddy.Tests
         private class TestPackage
         {
             public readonly Mock<IAuth0Api> ApiMock;
-            public readonly IAuth0Repository Repo;
+            public readonly IAuthRepository Repo;
             public TestPackage()
             {
                 ApiMock = new Mock<IAuth0Api>();

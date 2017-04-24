@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using GrubBuddy.Api.Attributes;
+﻿using GrubBuddy.Api.Attributes;
 using GrubBuddy.DataAccess;
 using GrubBuddy.Validators;
 using Microsoft.AspNetCore.Builder;
@@ -11,7 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using FluentValidation.AspNetCore;
 using GrubBuddy.Api.Middleware;
-using Microsoft.AspNetCore.Mvc;
+using GrubBuddy.DataAccess.Interfaces;
+using GrubBuddy.DataAccess.Auth0;
 
 namespace GrubBuddy.Api
 {
@@ -50,12 +48,12 @@ namespace GrubBuddy.Api
                 Configuration.GetSection("Auth0:Audience").Value,
                 Configuration.GetSection("Auth0:TokenUrl").Value));
 
-            services.AddSingleton<IAuth0Repository, Auth0Repository>();
+            services.AddSingleton<Auth0Repository, Auth0Repository>();
 
             var serviceProvider = services.BuildServiceProvider();
 
             services.AddSingleton<IUserApi>(provider =>
-                new UserApi(serviceProvider.GetService<IAuth0Repository>(), 
+                new UserApi(serviceProvider.GetService<IAuthRepository>(), 
                 Configuration.GetSection("Auth0:ClientUrl").Value));
 
             services.AddSingleton<IUserRepository, UserRepository>();

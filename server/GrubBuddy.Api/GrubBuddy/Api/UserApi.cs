@@ -10,6 +10,7 @@ using GrubBuddy.DataAccess;
 using GrubBuddy.Models;
 using MongoDB.Bson;
 using Rest;
+using GrubBuddy.DataAccess.Interfaces;
 
 namespace GrubBuddy.Api
 {
@@ -20,7 +21,7 @@ namespace GrubBuddy.Api
     public class UserApi : IUserApi
     {
         private readonly IManagementApiClient _managementApi;
-        public UserApi(IAuth0Repository authRepo, string url)
+        public UserApi(IAuthRepository authRepo, string url)
         {
             _managementApi = new ManagementApiClient(authRepo.GetAccessToken().Result, url);
         }

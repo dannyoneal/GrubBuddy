@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using GrubBuddy.Models;
-using GrubBuddy.DataAccess;
 using System.Threading.Tasks;
 using GrubBuddy.Responses;
 using Microsoft.Extensions.Logging;
+using GrubBuddy.DataAccess.Interfaces;
 
 namespace GrubBuddy.Api.Controllers
 {

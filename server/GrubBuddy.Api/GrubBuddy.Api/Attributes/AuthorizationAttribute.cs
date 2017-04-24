@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Auth0.Core;
-using GrubBuddy.DataAccess;
+﻿using System.Net;
 using GrubBuddy.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using GrubBuddy.DataAccess.Interfaces;
 
 namespace GrubBuddy.Api.Attributes
 {

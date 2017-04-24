@@ -5,14 +5,10 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using GrubBuddy.Models;
+using GrubBuddy.DataAccess.Interfaces;
 
 namespace GrubBuddy.DataAccess
 {
-    public interface IGrubsRepository {
-        IEnumerable<Grub> Get();
-        IEnumerable<Grub> GetByName(string name);
-        Task<Grub> Insert(Grub grub);
-    }
     public class GrubsRepository : IGrubsRepository
     {
         private readonly IMongoDatabase _db;
@@ -33,7 +29,7 @@ namespace GrubBuddy.DataAccess
 
         public async Task<Grub> Insert(Grub grub)
         {
-            grub.Id = Guid.NewGuid();
+            grub.GrubId = Guid.NewGuid();
             await _db.GetCollection<Grub>("Grubs").InsertOneAsync(grub);
 
             return grub;

@@ -2,14 +2,11 @@
 using System.Threading.Tasks;
 using GrubBuddy.Api;
 using GrubBuddy.Models;
+using GrubBuddy.DataAccess.Interfaces;
 
-namespace GrubBuddy.DataAccess
+namespace GrubBuddy.DataAccess.Auth0
 {
-    public interface IAuth0Repository
-    {
-        Task<string> GetAccessToken();
-    }
-    public class Auth0Repository : IAuth0Repository
+    public class Auth0Repository : IAuthRepository
     {
         private readonly IAuth0Api _authApi;
         private AccessToken _currentAccessToken;

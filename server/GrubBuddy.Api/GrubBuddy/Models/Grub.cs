@@ -3,14 +3,16 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using GrubBuddy.Enums;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.IdGenerators;
 
 namespace GrubBuddy.Models
 {
     public class Grub {
-        [BsonElement("grubId")]
-        public Guid? Id {get; set;}  
-        
-        public long UserId { get; set; }
+        [BsonId(IdGenerator = typeof(GuidGenerator))]
+        public Guid GrubId {get; set;}
+
+        public string UserId { get; set; }
 
         [BsonElement("creatorName")]
         public string CreatorName {get; set;}
