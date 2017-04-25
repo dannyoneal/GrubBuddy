@@ -8,6 +8,7 @@ import { AllGrubsPage } from '../pages/allGrubs/allGrubs';
 import { MapPage } from '../pages/map/map';
 import { AuthConfig, AuthHttp } from 'angular2-jwt';
 import { AuthService } from '../services/auth.service';
+import { HttpClientService } from '../services/httpClient.service';
 import { ModalService } from '../services/modal.service';
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
@@ -53,6 +54,7 @@ export function getAuthHttp(http) {
       useFactory: getAuthHttp,
       deps: [Http]
     },
+    HttpClientService
   ]
 })
 export class AppModule {}

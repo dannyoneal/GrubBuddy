@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import { NavController } from 'ionic-angular';
 import { GrubsService } from "../../services/grubs.service";
+import { AuthService } from "../../services/auth.service";
 import { ModalService } from "../../services/modal.service";
 import { Grub } from '../../types/Grub';
 import { FormControl } from '@angular/forms';
@@ -15,9 +16,11 @@ export class AllGrubsPage implements OnInit{
   searchText: string = '';
   allGrubs:Grub[];
   searchBarControl: FormControl;
-  constructor(public navCtrl: NavController, public grubsService: GrubsService, public modalService: ModalService) {
+  constructor(public navCtrl: NavController, public grubsService: GrubsService, public modalService: ModalService
+    ,public authService: AuthService) {
     this.allGrubs = [];
     this.searchBarControl = new FormControl();
+    var user = this.authService.getUser();
   }
 
   ngOnInit(){

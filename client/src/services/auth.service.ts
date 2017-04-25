@@ -29,7 +29,7 @@ export class AuthService {
   });
   storage: Storage = new Storage();
   refreshSubscription: any;
-  user: Object;
+  user: any;
   zoneImpl: NgZone;
   idToken: string;
   
@@ -71,6 +71,10 @@ export class AuthService {
       this.scheduleRefresh();
 
     });    
+  }
+
+  public getUser() {
+    return this.user;
   }
 
   public authenticated() { 
